@@ -17,4 +17,4 @@ class PersonInfoViewTest(TestCase):
         """test template render"""
         html = '42 Coffee Cups Test Assignment'
         self.assertTrue(html in self.response.content)
-        self.assertContains(self.response, 'Vinnichuk')
+        self.assertContains(self.response, 'Vitalii')
