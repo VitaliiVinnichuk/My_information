@@ -3,6 +3,7 @@
 {% block title %}Title{% endblock title %}
 {% block content %}
     <div class="container">
+        {% if person %}
             <div class="row">
                 <div class="col-xs-6">
                     <div class="row ">
@@ -77,6 +78,11 @@
                     </div>
                 </div>
             </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Error! No person info!
+            </div>
+        {% endif %}
     </div>
 
 {% endblock %}

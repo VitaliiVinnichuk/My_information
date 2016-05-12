@@ -1,0 +1,34 @@
+[
+{
+  "pk": 1, 
+  "model": "person_info.person", 
+  "fields": {
+    "bio": "Some bio about me", 
+    "first_name": "Vitalii", 
+    "last_name": "Vinnichuk", 
+    "other_contacts": "tel:+380633368103", 
+    "date_of_birth": "1993-03-18", 
+    "skype": "vinnichukvitaliy", 
+    "jabber": "vinnich@42.cc.co", 
+    "email": "vinnichukvitalii@gmail.com"
+  }
+},
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2016-05-04T14:57:28.685Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$mOW0kusdromq$li6IsCl7JciwcAhaX7fpQy+1sA8io21Pr+Wll+uE8ZU=", 
+    "email": "admin@admin.com", 
+    "date_joined": "2016-05-04T14:56:59.903Z"
+  }
+}
+]

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+from apps.person_info.models import Person
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
 
 class PersonInfoViewTest(TestCase):
+    fixtures = ['fixtures.json']
 
     def setUp(self):
         self.client = Client()
@@ -19,7 +21,9 @@ class PersonInfoViewTest(TestCase):
         self.assertTrue(html in self.response.content)
         self.assertContains(self.response, 'Vitalii')
 
+
 class PersonInfoModelTest(TestCase):
+    fixtures = ['fixtures.json']
 
     def setUp(self):
         self.client = Client()
