@@ -20,7 +20,8 @@ class MiddleWareLoggerViewTest(TestCase):
         html = '42 Coffee Cups Test Assignment'
         response = self.client.get(reverse('request_logger'))
         self.assertTrue(html in response.content)
-        self.assertTemplateUsed(response,template_name='person_info/request_logger.html')
+        template_name = 'person_info/request_logger.html'
+        self.assertTemplateUsed(response, template_name)
 
     def test_middleware_logger(self):
         """test add any data to db"""
@@ -30,7 +31,7 @@ class MiddleWareLoggerViewTest(TestCase):
         last_request = RequestLogger.objects.last()
         self.assertEqual(last_request.full_path, '/request_logger/')
         self.assertEqual(last_request.request_method, 'GET')
-        self.assertEqual(last_request.ip_addres, '127.0.0.1')
+        self.assertEqual(last_request.ip_addr, '127.0.0.1')
 
     def test_template_limit(self):
         """Test for correct response"""
