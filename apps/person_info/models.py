@@ -31,3 +31,26 @@ class Person(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
+
+
+class RequestLogger(models.Model):
+    """Request Logger Model"""
+
+    time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=u'Request time'
+    )
+    request_method = models.CharField(
+        max_length=15,
+        verbose_name=u'Method'
+    )
+    ip_addr = models.IPAddressField(
+        blank=True
+    )
+    full_path = models.CharField(
+        max_length=100,
+        verbose_name=u'Full request path'
+    )
+
+    def __unicode__(self):
+        return '%s %s' % (self.time, self.full_path)
