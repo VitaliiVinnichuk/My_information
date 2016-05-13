@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from apps.person_info.models import RequestLogger
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
@@ -19,8 +20,7 @@ class MiddleWareLoggerViewTest(TestCase):
         html = '42 Coffee Cups Test Assignment'
         response = self.client.get(reverse('request_logger'))
         self.assertTrue(html in response.content)
-        template_name = 'person_info/request_logger.html'
-        self.assertTemplateUsed(response, template_name)
+        self.assertTemplateUsed(response,template_name='person_info/request_logger.html')
 
     def test_middleware_logger(self):
         """test add any data to db"""
