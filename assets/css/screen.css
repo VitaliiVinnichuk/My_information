@@ -13,3 +13,11 @@ a:hover{
     font-size: 20px;
 }
 
+td{
+    padding:20px
+}
+hr {
+    border: 0;
+    height: 0;
+    box-shadow: 0 0 5px 1px black;
+}

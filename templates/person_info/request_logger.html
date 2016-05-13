@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Request logger{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Method</th>
+                        <th>IP addr</th>
+                        <th>URL</th>
+                    </tr>
+                    </thead>
+                    <tbody id="requests_table">
+                   {% for req in requests %}
+                            <tr>
+                                <td>{{ req.time }}</td>
+                                <td>{{ req.request_method }}</td>
+                                <td>{{ req.ip_addres }}</td>
+                                <td>{{ req.full_path }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <br>
+            <a href="{% url 'index' %}">return</a></div>
+    </div>
+{% endblock content %}
