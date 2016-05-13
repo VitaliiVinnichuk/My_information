@@ -19,7 +19,8 @@ class MiddleWareLoggerViewTest(TestCase):
         html = '42 Coffee Cups Test Assignment'
         response = self.client.get(reverse('request_logger'))
         self.assertTrue(html in response.content)
-        self.assertTemplateUsed(response, template_name='person_info/request_logger.html')
+        template_name = 'person_info/request_logger.html'
+        self.assertTemplateUsed(response, template_name)
         self.assertContains(response, '/request_logger/')
         self.assertContains(response, 'GET')
         self.assertContains(response, '2.20.190.43')
