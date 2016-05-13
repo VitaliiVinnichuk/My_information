@@ -21,6 +21,25 @@ class MiddleWareLoggerViewTest(TestCase):
         self.assertTrue(html in response.content)
         template_name = 'person_info/request_logger.html'
         self.assertTemplateUsed(response, template_name)
-        self.assertContains(response, '/request_logger/')
-        self.assertContains(response, 'GET')
-        self.assertContains(response, '2.20.190.43')
+
+    def test_middleware_logger(self):
+        """test add any data to db"""
+        RequestLogger.objects.all().delete()
+        self.client.get(reverse('request_logger'))
+        self.assertEqual(RequestLogger.objects.all().count(), 1)
+        last_request = RequestLogger.objects.last()
+        self.assertEqual(last_request.full_path, '/request_logger/')
+        self.assertEqual(last_request.request_method, 'GET')
+        self.assertEqual(last_request.ip_addres, '127.0.0.1')
+
+    def test_template_limit(self):
+        """Test for correct response"""
+        for i in range(10):
+            self.client.get(reverse('index'))
+            self.client.get(reverse('request_logger'))
+        requests = RequestLogger.objects.all()
+        self.assertEqual(requests.count(), 20)
+        # elements per page <= 10
+        response = self.client.get(reverse('request_logger'))
+        requests_count = response.context['requests'].count()
+        self.assertEqual(requests_count, 10)
