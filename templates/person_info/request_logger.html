@@ -22,7 +22,7 @@
                             <tr>
                                 <td>{{ req.time }}</td>
                                 <td>{{ req.request_method }}</td>
-                                <td>{{ req.ip_addres }}</td>
+                                <td>{{ req.ip_addr }}</td>
                                 <td>{{ req.full_path }}</td>
                             </tr>
                         {% endfor %}
@@ -36,3 +36,7 @@
             <a href="{% url 'index' %}">return</a></div>
     </div>
 {% endblock content %}
+{% block extra_js %}
+    <script src="{% static 'js/moment-with-locales.min.js' %}"> </script>
+    <script src="{% static 'js/request_logger.js' %}"> </script>
+{% endblock extra_js %}
