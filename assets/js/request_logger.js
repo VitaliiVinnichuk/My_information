@@ -1,7 +1,7 @@
 $(document).ready(function () {
     setInterval(function () {
         requestUpdate();
-    }, 1000)
+    }, 5000)
 });
 
 

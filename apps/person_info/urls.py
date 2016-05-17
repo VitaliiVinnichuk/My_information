@@ -7,5 +7,5 @@ urlpatterns = patterns('',
                            name='index'),
                        url(r'^request_logger/$',
                            'apps.person_info.views.request_logger',
-                           name='request_logger'),
+                           name='request_logger')
                        )
