@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}42_cc_test{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <form class="form-horizontal" role="form" action="." method="post" enctype="multipart/form-data"
+    id="user-info-form">
+    {% csrf_token %}
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="form-group">
+                <label for="id_first_name" class=" col-xs-3">Name: </label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="id_first_name" placeholder="{{ form.first_name }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="id_last_name" class=" col-xs-3">Last name: </label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="id_last_name" placeholder="{{ form.last_name }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group ">
+                <label for="id_date_of_birth" class=" col-xs-3">Date of birth: </label>
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="id_date_of_birth"
+                    placeholder="{{ form.date_of_birth }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="photo" class="col-xs-12">Photo:</label>
+
+                <div class="row" align="center">
+                    <img src="{% static 'img/default.gif' %}" width="200px">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="form-group">
+                <label for="id_email" class=" col-xs-3">email: </label>
+                <div class="col-xs-8">
+                    <input type="email" class="form-control" id="id_email" placeholder="{{ form.email }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="id_jabber" class=" col-xs-3">jabber: </label>
+
+                <div class="col-xs-8">
+                    <input type="email" class="form-control" id="id_jabber" placeholder="{{ form.jabber }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group ">
+                <label for="id_skype" class="col-xs-3">Skype: </label>
+
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" id="id_skype" placeholder="{{ form.skype }}">  
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="id_other_contacts" class=" col-xs-3">Other contacts: </label>
+                <div class="col-xs-8">
+                    <textarea class="form-control" id="id_other_contacts" cols="30" rows="10">{{ form.other_contacts }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="id_bio" class="col-xs-3">Bio: </label>
+                <div class="col-xs-8">
+                    <textarea class="form-control" id="id_other_contacts" cols="30" rows="10">{{ form.bio }}</textarea>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" align="center">
+        <br>
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        <button type="reset" class="btn btn-danger btn-lg">Discard</button>
+    </div>
+</form>
+<!--Footer-->
+<div class="row">
+    <hr>
+    <br>
+    <a href="{% url 'request_logger' %}">requests</a>
+</div>
+</div>
+{% endblock content %}

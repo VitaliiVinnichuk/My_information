@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}Title{% endblock title %}
 {% block content %}
     <div class="container">
         {% if person %}
@@ -14,6 +13,7 @@
                             {{ person.first_name }}
                         </div>
                     </div>
+
                     <div class="row ">
                         <div class="col-xs-3 label">
                             Last name:
@@ -22,6 +22,7 @@
                             {{ person.last_name }}
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-xs-3 label">
                             Date of birth:
@@ -32,19 +33,19 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 label">
-                            Bio:
+                            Photo:
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            {{ person.bio|linebreaks }}
-                        </div>
+                    <div class="row" align="center">
+                        <img src="{% if person.photo %}{% static person.photo.url %}{% else %}{% static 'img/default.gif' %}"{% endif %} width="200px">
                     </div>
                 </div>
+
+
                 <div class="col-xs-6">
                     <div class="row">
                         <div class="col-xs-2 label">
-                            Email:
+                            email:
                         </div>
                         <div class="col-xs-10">
                             {{ person.email }}
@@ -52,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2 label">
-                            Jabber:
+                            jabber:
                         </div>
                         <div class="col-xs-10">
                             {{ person.jabber }}
@@ -73,7 +74,21 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 ">
-                            {{ person.other_contacts|linebreaks }}
+                            {{ person.other_contacts }}
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-xs-12 label">
+                            Bio:
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{ person.bio }}
                         </div>
                     </div>
                 </div>

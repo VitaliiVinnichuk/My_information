@@ -17,3 +17,8 @@ def request_logger(request):
                             content_type='application/json')
     return render(request, 'person_info/request_logger.html',
                   {'requests': requests})
+
+
+def edit(request):
+    persons = Person.objects.all().first()
+    return render(request, 'person_info/edit.html', {'form': persons})
