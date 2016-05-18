@@ -1,0 +1,56 @@
+<style>
+    .loader {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 30px;
+        height: 30px;
+        background: #3C3F50;
+        border-radius: 50%;
+        margin-left: -15px;
+        margin-top: -70px;
+        transform-origin: 50% 70px;
+        animation: turn 1.3s infinite;
+    }
+
+    @keyframes turn {
+        from {
+            transform: rotate(0deg);
+            background: #E9908A;
+        }
+        80% {
+            transform: rotate(360deg);
+            background: #5C5EDC;
+        }
+        100% {
+            transform: rotate(360deg);
+            background: rgba(76, 70, 101, 0.99);
+        }
+    }
+
+    #circle5 {
+        animation-delay: 0.1s;
+    }
+
+    #circle4 {
+        animation-delay: 0.2s;
+    }
+
+    #circle3 {
+        animation-delay: 0.3s;
+    }
+
+    #circle2 {
+        animation-delay: 0.4s;
+    }
+
+    #circle1 {
+        animation-delay: 0.5s;
+    }
+</style>
+
+    <div id='circle1' class="loader"></div>
+    <div id='circle2' class="loader"></div>
+    <div id='circle3' class="loader"></div>
+    <div id='circle4' class="loader"></div>
+    <div id='circle5' class="loader"></div>

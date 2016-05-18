@@ -26,18 +26,23 @@ class PersonEditTest(TestCase):
         self.assertTrue(html in self.request.content)
 
     def test_valid_data(self):
+        """test form with valid data"""
         form = PersonForm(self.person)
         self.assertTrue(form.is_valid)
 
     def test_blank_data(self):
+        """test form for blank field"""
         form = PersonForm({})
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['first_name'], ['This field is required.'])
-        self.assertEqual(form.errors['last_name'], ['This field is required.'])
-        self.assertEqual(form.errors['date_of_birth'], ['This field is required.'])
+        self.assertEqual(form.errors['first_name'],
+                         ['This field is required.'])
+        self.assertEqual(form.errors['last_name'],
+                         ['This field is required.'])
+        self.assertEqual(form.errors['date_of_birth'],
+                         ['This field is required.'])
 
     def test_form_fields(self):
-        # check form fields
+        """check form fields"""
         self.assertIn('name="first_name"', self.request.content)
         self.assertIn('name="last_name"', self.request.content)
         self.assertIn('name="date_of_birth"', self.request.content)

@@ -1,3 +1,5 @@
+import json
+from apps.person_info.forms import PersonForm
 from apps.person_info.models import Person, RequestLogger
 from django.core import serializers
 from django.http import HttpResponse
@@ -20,5 +22,20 @@ def request_logger(request):
 
 
 def edit(request):
-    persons = Person.objects.all().first()
-    return render(request, 'person_info/edit.html', {'form': persons})
+    person = Person.objects.all().first()
+    if request.method == 'POST' and request.is_ajax():
+        form = PersonForm(request.POST,
+                          instance=person)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(json.dumps({'success': True}),
+                                content_type='application/json')
+        else:
+            response = {}
+            for k in form.errors:
+                response[k] = form.errors[k]
+            return HttpResponse(json.dumps({'success': False,
+                                            'errors': response
+                                            }))
+    form = PersonForm(instance=person)
+    return render(request, 'person_info/edit.html', {'form': form})
