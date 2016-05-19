@@ -48,3 +48,9 @@ class PersonEditTest(TestCase):
         self.assertIn('name="date_of_birth"', self.request.content)
         self.assertIn('name="email"', self.request.content)
         self.assertIn('name="jabber"', self.request.content)
+
+    def test_render_widget(self):
+        """Check correct work custom widget
+        which add 'datepicker' class into DateTime widget"""
+        request = self.client.get(reverse('edit'))
+        self.assertIn('datepicker', request.content)

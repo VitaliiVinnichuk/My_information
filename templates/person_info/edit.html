@@ -31,7 +31,6 @@
                     <div class="row">
                         <div class="form-group ">
                             <label for="id_date_of_birth" class=" col-xs-3">Date of birth: </label>
-
                             <div class="col-xs-8">
                                 {{ form.date_of_birth }}
                             </div>
@@ -118,5 +117,6 @@
 
 {% block extra_js %}
     <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
+    <script src="{% static 'js/datePicker.js' %}"></script>
     <script src="{% static 'js/form_submission.js' %}"></script>
 {% endblock extra_js %}

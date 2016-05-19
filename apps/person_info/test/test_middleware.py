@@ -44,7 +44,3 @@ class MiddleWareLoggerViewTest(TestCase):
         response = self.client.get(reverse('request_logger'))
         requests_count = response.context['requests'].count()
         self.assertEqual(requests_count, 10)
-
-    def test_render_widget(self):
-        request = self.client.get(reverse('edit'))
-        self.assertIn('datepicker', request.content)
