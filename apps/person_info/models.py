@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-*
+from PIL import Image
 from django.db import models
 
 
@@ -20,6 +21,11 @@ class Person(models.Model):
         blank=True,
         max_length=250,
     )
+    photo = models.ImageField(
+        upload_to='photo/',
+        blank=True,
+        null=True
+    )
     email = models.EmailField()
     jabber = models.EmailField()
     skype = models.CharField(
@@ -28,6 +34,13 @@ class Person(models.Model):
     other_contacts = models.TextField(
         max_length=250,
     )
+
+    def save(self, *args, **kwargs):
+        super(Person, self).save(*args, **kwargs)
+        if self.photo:
+            image = Image.open(self.photo)
+            image.thumbnail((200, 200), Image.ANTIALIAS)
+            image.save(self.photo.path, 'JPEG', quality=100)
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)

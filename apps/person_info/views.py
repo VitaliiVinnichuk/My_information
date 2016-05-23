@@ -25,6 +25,7 @@ def edit(request):
     person = Person.objects.all().first()
     if request.method == 'POST' and request.is_ajax():
         form = PersonForm(request.POST,
+                          request.FILES,
                           instance=person)
         if form.is_valid():
             form.save()
