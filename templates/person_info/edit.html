@@ -47,12 +47,6 @@
                     <div class="row" align="center">
                             <img id="output_photo" src="{% if form.photo.value %}{{ form.photo.value.url }}{% else %}{% static 'img/default.gif' %}{% endif %}" class="img-rounded" >
                     </div>
-                    <script>
-                        document.getElementById('id_photo').addEventListener('change', function (event) {
-                            var output = document.getElementById('output_photo');
-                            output.src = URL.createObjectURL(event.target.files[0]);
-                        }, true);
-                    </script>
                 </div>
                 <div class="col-xs-6">
                     <div class="row">
@@ -120,4 +114,5 @@
     <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
     <script src="{% static 'js/datePicker.js' %}"></script>
     <script src="{% static 'js/form_submission.js' %}"></script>
+    <script src="{% static 'js/photo_preview.js' %}"></script>
 {% endblock extra_js %}
