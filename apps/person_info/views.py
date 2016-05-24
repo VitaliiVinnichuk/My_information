@@ -4,6 +4,7 @@ from apps.person_info.models import Person, RequestLogger
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -21,6 +22,7 @@ def request_logger(request):
                   {'requests': requests})
 
 
+@login_required(login_url='/login/')
 def edit(request):
     person = Person.objects.all().first()
     if request.method == 'POST' and request.is_ajax():

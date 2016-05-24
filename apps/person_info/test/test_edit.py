@@ -2,11 +2,16 @@
 from apps.person_info.forms import PersonForm
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.test.client import Client
 
 
 class PersonEditTest(TestCase):
+    fixtures = ['fixtures.json']
+
     def setUp(self):
-        self.request = self.client.get(reverse('edit'))
+        self.client = Client()
+        self.client.login(username='admin', password='admin')
+        self.response = self.client.get(reverse('edit'))
         self.person = {'first_name': 'Vitaliy',
                        'last_name': 'Vinnichuk',
                        "date_of_birth": "1993-03-18",
@@ -15,15 +20,6 @@ class PersonEditTest(TestCase):
                        'jabber': 'vinni@42cc.co',
                        'skype': 'vinnichukvitaliy'
                        }
-
-    def test_request_logger(self):
-        """test status code"""
-        self.assertEqual(self.request.status_code, 200)
-
-    def test_edit_html(self):
-        """test template render"""
-        html = '42 Coffee Cups Test Assignment'
-        self.assertTrue(html in self.request.content)
 
     def test_valid_data(self):
         """test form with valid data"""
@@ -43,14 +39,13 @@ class PersonEditTest(TestCase):
 
     def test_form_fields(self):
         """check form fields"""
-        self.assertIn('name="first_name"', self.request.content)
-        self.assertIn('name="last_name"', self.request.content)
-        self.assertIn('name="date_of_birth"', self.request.content)
-        self.assertIn('name="email"', self.request.content)
-        self.assertIn('name="jabber"', self.request.content)
+        self.assertIn('name="first_name"', self.response.content)
+        self.assertIn('name="last_name"', self.response.content)
+        self.assertIn('name="date_of_birth"', self.response.content)
+        self.assertIn('name="email"', self.response.content)
+        self.assertIn('name="jabber"', self.response.content)
 
     def test_render_widget(self):
         """Check correct work custom widget
         which add 'datepicker' class into DateTime widget"""
-        request = self.client.get(reverse('edit'))
-        self.assertIn('datepicker', request.content)
+        self.assertIn('datepicker', self.response.content)
