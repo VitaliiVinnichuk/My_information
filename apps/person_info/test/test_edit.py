@@ -46,6 +46,7 @@ class PersonEditTest(TestCase):
         # test form with not valid data
         obj = Person.objects.first()
         self.assertEqual(obj.first_name, 'Vitalii')
+        self.assertEqual(obj.last_name, 'Vinnichuk')
 
     def test_form_fields(self):
         """check form fields"""
