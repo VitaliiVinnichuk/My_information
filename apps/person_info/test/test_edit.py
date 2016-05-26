@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from apps.person_info.forms import PersonForm
+from apps.person_info.models import Person
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
@@ -12,19 +13,24 @@ class PersonEditTest(TestCase):
         self.client = Client()
         self.client.login(username='admin', password='admin')
         self.response = self.client.get(reverse('edit'))
-        self.person = {'first_name': 'Vitaliy',
-                       'last_name': 'Vinnichuk',
-                       "date_of_birth": "1993-03-18",
+        self.person = {'first_name': 'Vasya',
+                       'last_name': 'Pupkin',
+                       "date_of_birth": "2003-03-02",
                        'bio': 'some bio',
-                       'email': 'vinnichukvitaliy@gmail.com',
-                       'jabber': 'vinni@42cc.co',
-                       'skype': 'vinnichukvitaliy'
+                       'other_contacts': '9379992',
+                       'email': 'vasya@gmail.com',
+                       'jabber': 'vasya@42cc.co',
+                       'skype': 'vasya'
                        }
 
     def test_valid_data(self):
         """test form with valid data"""
-        form = PersonForm(self.person)
-        self.assertTrue(form.is_valid)
+        obj = Person.objects.first()
+        form = PersonForm(self.person, instance=obj)
+        self.assertTrue(form.is_valid())
+        form.save()
+        self.assertEqual(obj.first_name, 'Vasya')
+        self.assertEqual(obj.last_name, 'Pupkin')
 
     def test_blank_data(self):
         """test form for blank field"""
@@ -36,6 +42,10 @@ class PersonEditTest(TestCase):
                          ['This field is required.'])
         self.assertEqual(form.errors['date_of_birth'],
                          ['This field is required.'])
+
+        # test form with not valid data
+        obj = Person.objects.first()
+        self.assertEqual(obj.first_name, 'Vitalii')
 
     def test_form_fields(self):
         """check form fields"""
