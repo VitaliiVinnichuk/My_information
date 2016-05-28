@@ -11,4 +11,4 @@ def edit_link(object):
     app = object._meta.app_label
     module = object._meta.module_name
     url = reverse('admin:%s_%s_change' % (app, module),  args=[object.id])
-    return u'<a href="%s">Admin %s</a>' %(url,  object.__unicode__())
+    return u'<a href="%s">Admin %s</a>' % (url,  object.__unicode__())
