@@ -26,6 +26,13 @@ class PersonEditTest(TestCase):
         signal = ModelActionLog.objects.last()
         self.assertEquals(signal.action, 0)
 
+        # After update
+        person = Person.objects.get(pk=1)
+        person.last_name = 'Test'
+        person.save()
+        signal = ModelActionLog.objects.last()
+        self.assertEquals(signal.action, 1)
+
         # After delete
         Person.objects.last().delete()
         signal = ModelActionLog.objects.last()

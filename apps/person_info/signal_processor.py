@@ -10,10 +10,7 @@ def object_save_log(sender, created, instance, **kwargs):
     """"Write information about created or updated object"""
     if instance.__class__.__name__ in EXCLUDE_LIST:
         return
-    if created:
-        action = 0
-    else:
-        action = 1
+    action = 0 if created else 1
     ModelActionLog.objects.create(inst=instance.__class__.__name__,
                                   action=action)
 
@@ -25,4 +22,3 @@ def object_delete_log(sender, instance, **kwargs):
         return
     ModelActionLog.objects.create(inst=instance.__class__.__name__,
                                   action=2)
-    return
