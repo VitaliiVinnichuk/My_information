@@ -23,19 +23,23 @@
         <div class="row">
             <div class="col-xs-12">
                 <table class="table table-striped">
+
                     <thead>
                     <tr>
-                        <th>Time</th>
-                        <th>Method</th>
-                        <th>IP addr</th>
-                        <th>URL</th>
-                        <th><a href="{% url "request_logger" %}?order_by={% if order_by == '0' %}1{% else %}0{% endif %}">
-                        Priority
-                        {% if order_by == '0' %}&uarr;
-                            {% elif order_by == '1' %}&darr;
-                        {% endif %}
-                    </a></th>
-                    </tr>
+                        {% with order=request.GET.order_by %}
+                            <th>Time</th>
+                            <th>Method</th>
+                            <th>IP addr</th>
+                            <th>URL</th>
+                            <th>
+                                <a href="{% url "request_logger" %}?order_by={% if order == '0' %}1{% else %}0{% endif %}">
+                                    Priority
+                                    {% if order == '0' %}&uarr;
+                                        {% elif order == '1' %}&darr;
+                                    {% endif %}
+                                </a></th>
+                            </tr>
+                        {% endwith %}
                     </thead>
                     <tbody id="requests_table">
                     {% with requests|first as req_first %}

@@ -56,7 +56,8 @@ class MiddleWareLoggerViewTest(TestCase):
         for request in RequestLogger.objects.all():
             request.priority = (random.randint(0, 4))
             request.save()
-        response = self.client.get(reverse('request_logger'), {'order_by_priotity': '1'})
+        response = self.client.get(reverse('request_logger'),
+                                   {'order_by': '1'})
         requests = response.context['requests']
         priority_list = []
         for i in requests.all():

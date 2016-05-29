@@ -48,7 +48,7 @@ class Person(models.Model):
 
 class RequestLogger(models.Model):
     """Request Logger Model"""
-    PRIORITIES = [(i,i) for i in range(5)]
+    PRIORITIES = [(i, i) for i in range(5)]
     time = models.DateTimeField(
         auto_now_add=True,
         verbose_name=u'Request time'

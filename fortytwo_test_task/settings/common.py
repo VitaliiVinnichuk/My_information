@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 
+from django.conf import global_settings
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -54,12 +56,15 @@ MIDDLEWARE_CLASSES = (
     'apps.person_info.middleware.RequestLoggerMiddleware'
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.core.context_processors.request",
+)
+
 ROOT_URLCONF = 'fortytwo_test_task.urls'
 
 WSGI_APPLICATION = 'fortytwo_test_task.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
