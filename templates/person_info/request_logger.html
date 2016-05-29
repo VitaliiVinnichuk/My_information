@@ -29,6 +29,7 @@
                         <th>Method</th>
                         <th>IP addr</th>
                         <th>URL</th>
+                        <th>Priority field</th>
                     </tr>
                     </thead>
                     <tbody id="requests_table">
@@ -40,6 +41,7 @@
                             <td>{{ req.request_method }}</td>
                             <td>{{ req.ip_addr }}</td>
                             <td>{{ req.full_path }}</td>
+                            <td>1</td>
                         </tr>
                     {% endfor %}
                     </tbody>
