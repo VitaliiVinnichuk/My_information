@@ -67,3 +67,27 @@ class RequestLogger(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.time, self.full_path)
+
+
+class ModelActionLog(models.Model):
+    ACTIONS = (
+        (0, 'create'),
+        (1, 'edit'),
+        (2, 'delete')
+    )
+    time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=u'Action Time'
+    )
+    inst = models.CharField(
+        max_length=200,
+        verbose_name=u'Instance'
+    )
+    action = models.IntegerField(
+        max_length=1,
+        choices=ACTIONS,
+        verbose_name=u'Object actions'
+    )
+
+    def __unicode__(self):
+        return '%s: %s %s' % (self.time, self.inst, self.action)
