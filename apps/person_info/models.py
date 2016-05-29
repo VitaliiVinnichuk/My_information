@@ -71,9 +71,6 @@ class RequestLogger(models.Model):
         blank=True
     )
 
-    class Meta:
-        ordering = ['-time']
-
     def __unicode__(self):
         return '%s %s' % (self.time, self.full_path)
 

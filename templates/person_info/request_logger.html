@@ -29,7 +29,12 @@
                         <th>Method</th>
                         <th>IP addr</th>
                         <th>URL</th>
-                        <th>Priority field</th>
+                        <th><a href="{% url "request_logger" %}?order_by={% if order_by == '0' %}1{% else %}0{% endif %}">
+                        Priority
+                        {% if order_by == '0' %}&uarr;
+                            {% elif order_by == '1' %}&darr;
+                        {% endif %}
+                    </a></th>
                     </tr>
                     </thead>
                     <tbody id="requests_table">
@@ -41,7 +46,7 @@
                             <td>{{ req.request_method }}</td>
                             <td>{{ req.ip_addr }}</td>
                             <td>{{ req.full_path }}</td>
-                            <td>1</td>
+                            <td>{{ req.priority }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

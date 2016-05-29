@@ -14,7 +14,16 @@ def index(request):
 
 
 def request_logger(request):
-    requests = RequestLogger.objects.all()[:10]
+    # order request list
+    order_by = request.GET.get('order_by', '')
+    if order_by:
+        if order_by == '0':
+            order_field = '-priority'
+        if order_by == '1':
+            order_field = 'priority'
+    else:
+        order_field = '-time'
+    requests = RequestLogger.objects.all()[:10].order_by(order_field)
     if request.is_ajax():
         return HttpResponse(serializers.serialize("json", requests),
                             content_type='application/json')
