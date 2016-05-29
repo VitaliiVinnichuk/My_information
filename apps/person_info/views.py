@@ -14,7 +14,7 @@ def index(request):
 
 
 def request_logger(request):
-    requests = (RequestLogger.objects.all().order_by('-time'))[:10]
+    requests = (RequestLogger.objects.all())[:10]
     if request.is_ajax():
         return HttpResponse(serializers.serialize("json", requests),
                             content_type='application/json')
