@@ -32,6 +32,8 @@ class MiddleWareLoggerViewTest(TestCase):
         self.assertEqual(last_request.full_path, '/request_logger/')
         self.assertEqual(last_request.request_method, 'GET')
         self.assertEqual(last_request.ip_addr, '127.0.0.1')
+        # test priority field
+        self.assertEqual(last_request.priority, 0)
 
     def test_template_limit(self):
         """Test for correct response"""
@@ -44,3 +46,11 @@ class MiddleWareLoggerViewTest(TestCase):
         response = self.client.get(reverse('request_logger'))
         requests_count = response.context['requests'].count()
         self.assertEqual(requests_count, 10)
+
+    # def test_priority_field(self):
+    #     """Test priority field"""
+    #     self.client.get(reverse("request_logger"))
+    #     request = RequestLogger.objects.last()
+    #     request.priority = 4
+    #     request.save()
+    #     print request
