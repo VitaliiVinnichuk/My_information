@@ -48,7 +48,7 @@ class Person(models.Model):
 
 class RequestLogger(models.Model):
     """Request Logger Model"""
-
+    PRIORITIES = [(i, i) for i in range(5)]
     time = models.DateTimeField(
         auto_now_add=True,
         verbose_name=u'Request time'
@@ -64,6 +64,36 @@ class RequestLogger(models.Model):
         max_length=100,
         verbose_name=u'Full request path'
     )
+    priority = models.IntegerField(
+        max_length=1,
+        default=0,
+        choices=PRIORITIES,
+        blank=True
+    )
 
     def __unicode__(self):
         return '%s %s' % (self.time, self.full_path)
+
+
+class ModelActionLog(models.Model):
+    ACTIONS = (
+        (0, 'create'),
+        (1, 'edit'),
+        (2, 'delete')
+    )
+    time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=u'Action Time'
+    )
+    inst = models.CharField(
+        max_length=200,
+        verbose_name=u'Instance'
+    )
+    action = models.IntegerField(
+        max_length=1,
+        choices=ACTIONS,
+        verbose_name=u'Object actions'
+    )
+
+    def __unicode__(self):
+        return '%s: %s %s' % (self.time, self.inst, self.action)

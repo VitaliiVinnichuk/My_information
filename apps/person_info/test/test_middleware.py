@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import random
+
 from apps.person_info.models import RequestLogger
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
@@ -32,6 +34,8 @@ class MiddleWareLoggerViewTest(TestCase):
         self.assertEqual(last_request.full_path, '/request_logger/')
         self.assertEqual(last_request.request_method, 'GET')
         self.assertEqual(last_request.ip_addr, '127.0.0.1')
+        # test priority field
+        self.assertEqual(last_request.priority, 0)
 
     def test_template_limit(self):
         """Test for correct response"""
@@ -44,3 +48,18 @@ class MiddleWareLoggerViewTest(TestCase):
         response = self.client.get(reverse('request_logger'))
         requests_count = response.context['requests'].count()
         self.assertEqual(requests_count, 10)
+
+    def test_priority_field(self):
+        """Test priority field"""
+        for i in range(15):
+            self.client.get(reverse('request_logger'))
+        for request in RequestLogger.objects.all():
+            request.priority = (random.randint(0, 4))
+            request.save()
+        response = self.client.get(reverse('request_logger'),
+                                   {'order_by': '1'})
+        requests = response.context['requests']
+        priority_list = []
+        for i in requests.all():
+            priority_list.append(i.priority)
+        self.assertEqual(priority_list, sorted(priority_list))
