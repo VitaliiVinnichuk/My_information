@@ -1,6 +1,6 @@
 from django import template
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
+from django.template import TemplateSyntaxError
 
 register = template.Library()
 
@@ -14,5 +14,5 @@ def edit_link(object):
         module = object._meta.module_name
         url = reverse('admin:%s_%s_change' % (app, module),  args=[object.id])
         return u'<a href="%s">Admin %s</a>' % (url,  object.__unicode__())
-    except AttributeError:
-        raise ObjectDoesNotExist("Incorect object")
+    except Exception as e:
+        raise TemplateSyntaxError(e)
