@@ -1,6 +1,5 @@
 from apps.person_info.models import Person
 from apps.person_info.templatetags.edit_link import edit_link
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.template import Template
 from django.template.base import TemplateSyntaxError
