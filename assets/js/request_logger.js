@@ -42,7 +42,6 @@ function titleCounter(last_id) {
 function requestUpdate(callback) {
     $.ajax({
         dataType: "json",
-        url: '/request_logger/',
         success: function (response) {
             var last_id = updateTable(response);
             titleCounter(last_id);
@@ -62,7 +61,7 @@ function updateTable(data) {
             "<td>" + response_data[i]["fields"]["request_method"] + "</td>" +
             "<td>" + response_data[i]["fields"]["ip_addr"] + "</td>" +
             "<td>" + response_data[i]["fields"]["full_path"] + "</td>" +
-            "<td>" + "response_data[i]["fields"]["priority"] + "</td>" +
+            "<td>" + response_data[i]["fields"]["priority"] + "</td>" +
             "</tr>";
     }
     document.getElementById('requests_table').innerHTML = newTable;
