@@ -3,6 +3,7 @@ from apps.person_info.templatetags.edit_link import edit_link
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.template import Template
+from django.template.base import TemplateSyntaxError
 from django.template.context import Context
 from django.test import TestCase
 
@@ -23,8 +24,8 @@ class TemplateTagTest(TestCase):
     def test_tag_incorect_object(self):
         """Test tag if object not a instance of model"""
         # Object is int
-        self.assertRaises(ObjectDoesNotExist, lambda: edit_link(9379992))
+        self.assertRaises(TemplateSyntaxError, lambda: edit_link(9379992))
         # Object is str
-        self.assertRaises(ObjectDoesNotExist, lambda: edit_link('hello'))
+        self.assertRaises(TemplateSyntaxError, lambda: edit_link('hello'))
         # Blank obj
         self.assertRaises(TypeError, lambda: edit_link())
