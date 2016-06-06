@@ -14,6 +14,13 @@ class Migration(DataMigration):
         "Write your backwards methods here."
 
     models = {
+        u'person_info.modelactionlog': {
+            'Meta': {'object_name': 'ModelActionLog'},
+            'action': ('django.db.models.fields.IntegerField', [], {'max_length': '1'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'inst': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
+        },
         u'person_info.person': {
             'Meta': {'object_name': 'Person'},
             'bio': ('django.db.models.fields.TextField', [], {'max_length': '250', 'blank': 'True'}),
@@ -24,7 +31,17 @@ class Migration(DataMigration):
             'jabber': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'other_contacts': ('django.db.models.fields.TextField', [], {'max_length': '250'}),
+            'photo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'skype': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+        },
+        u'person_info.requestlogger': {
+            'Meta': {'object_name': 'RequestLogger'},
+            'full_path': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ip_addr': ('django.db.models.fields.IPAddressField', [], {'max_length': '15', 'blank': 'True'}),
+            'priority': ('django.db.models.fields.IntegerField', [], {'default': '0', 'max_length': '1', 'blank': 'True'}),
+            'request_method': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
         }
     }
 
