@@ -5,6 +5,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+import signal_processor  # noqa
 
 
 def index(request):
