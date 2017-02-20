@@ -10,7 +10,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # App/Library Paths
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
-# Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
