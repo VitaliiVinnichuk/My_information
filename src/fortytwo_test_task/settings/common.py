@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # App/Library Paths
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
-#hello world 
+# hello world
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'x=c0_e(onjn^80irdy2c221#)2t^qi&6yrc$31i(&ti*_jf3l8'
 
