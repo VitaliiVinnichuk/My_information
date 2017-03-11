@@ -1,5 +1,9 @@
-MANAGE=django-admin.py
+MANAGE=manage.py
 SETTINGS=fortytwo_test_task.settings
+PYTHONPATH=$(which python)
+
+cat:
+    echo '$PYTHONPATH'
 
 test:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test
