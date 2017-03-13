@@ -1,4 +1,11 @@
 #!/bin/bash
+DIR_PATH="$(pwd)"
+
+function virtual_env{
+    if [! -d $DIR_PATH/.. ]; then
+        virtalenv 
+    fi
+}
 
 function nginx_conf {
     # Nginx conf
@@ -20,8 +27,8 @@ function nginx_conf {
 }
 
 function gunicorn_conf {
-    cp gunicorn_start ../env/bin/
-    chown webapp:nginx ../env/bin/gunicorn_start
+    cp gunicorn_start ../venv/bin/
+    chown webapp:nginx ../venv/bin/gunicorn_start
 }
 
 function supervisord_config {
