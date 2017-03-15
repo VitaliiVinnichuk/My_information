@@ -1,23 +1,18 @@
-MANAGE=manage.py
-SETTINGS=fortytwo_test_task.settings
-PYTHONPATH=$(which python)
-
-cat:
-    echo '$PYTHONPATH'
 
 test:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test
+	python manage.py test
 	flake8 --exclude '*migrations*' apps fortytwo_test_task
 
 run:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) runserver
+	python $(MANAGE) runserver
 
 syncdb:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) syncdb --noinput
+	python manage.py syncdb --noinput
 
 migrate:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) migrate
+	python manage.py migrate
 
 collectstatic:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) collectstatic --noinput
+	python manage.py collectstatic --noinput
+
 .PHONY: test syncdb migrate
