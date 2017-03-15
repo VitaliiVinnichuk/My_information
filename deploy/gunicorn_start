@@ -2,8 +2,8 @@
 NAME="My_information"                               # Name of the application
 #TODO: relative path
 DJANGODIR=/webapp/My_information/src               # Django project directory
-SOCKFILE=/webapp/run/gunicorn.sock                 # we will communicte using this unix socket
-USER=                                               # the user to run as
+SOCKFILE=/webapp/My_information/run/gunicorn.sock                 # we will communicte using this unix socket
+USER=webapp                                               # the user to run as
 GROUP=nginx                                         # the group to run as
 NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=fortytwo_test_task.settings  # which settings file should Django use
