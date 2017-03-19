@@ -1,1 +1,1 @@
-test pipe
+test fetch clone
