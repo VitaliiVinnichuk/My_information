@@ -4,14 +4,14 @@ NAME="My_information"                               # Name of the application
 DJANGODIR=/webapp/My_information/src               # Django project directory
 GUNICORN=/webapp/venv/bin/gunicorn
 ENV_ACT=/webapp/venv/bin/activate
-SOCKFILE=/webapp/My_information/run/gunicorn.socki                 # we will communicte using this unix socket
+SOCKFILE=/webapp/My_information/run/gunicorn.sock                 # we will communicte using this unix socket
 USER=webapp                                               # the user to run as
 GROUP=nginx                                         # the group to run as
 NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=fortytwo_test_task.settings  # which settings file should Django use
 DJANGO_WSGI_MODULE=fortytwo_test_task.wsgi          # WSGI module name
 echo "Starting $NAME as `whoami`"
-
+chown -R $USER:$GROUP /webapp/My_information/run
 # Activate the virtual environment
 cd $DJANGODIR/
 source $ENV_ACT
